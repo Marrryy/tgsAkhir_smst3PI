@@ -1,0 +1,56 @@
+create database tgsakhir;
+
+
+CREATE TABLE users (
+  user_id INTEGER NOT NULL AUTO_INCREMENT,
+  name VARCHAR(128),
+  email VARCHAR(128),
+  password VARCHAR(128),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+  PRIMARY KEY(user_id)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE posts (
+  post_id INTEGER NOT NULL AUTO_INCREMENT,
+  user_id INTEGER NOT NULL,
+  headline TEXT,
+  postText TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  
+  PRIMARY KEY(post_id),
+  CONSTRAINT post_idfk_2
+  FOREIGN KEY (user_id)
+  REFERENCES users (user_id)
+  ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  
+CREATE TABLE comments (
+  comment_id INTEGER NOT NULL AUTO_INCREMENT,
+  post_id INTEGER,
+  user_id INTEGER NOT NULL,
+  commentText TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  PRIMARY KEY(comment_id),
+  CONSTRAINT post_idfk_1
+    FOREIGN KEY (post_id)
+    REFERENCES posts (post_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT user_idfk_1
+    FOREIGN KEY (user_id)
+    REFERENCES users (user_id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE visitors (
+  visitor_id INTEGER NOT NULL AUTO_INCREMENT,
+  dateVisit timestamp(6),
+  idsession VARCHAR(50),
+  ipaddress VARCHAR(20),
+  page VARCHAR(20),
+  PRIMARY KEY(visitor_id)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8;

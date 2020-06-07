@@ -1,0 +1,18 @@
+Script :
+HTML
+CSS dan boleh frameworknya
+Javascript dan boleh dengan librarynya
+PHP (harus native, tidak boleh framework/CMS)
+database Mysql/Postgresql
+
+
+Fitur :
+Layout dengan css
+Ada menu drop down
+Ada image slide
+Ada halaman Profil
+Ada photo Gallery
+Ada login, minimal 2 user
+Konten dikelola melalui database
+Ada komentar di postingan
+Ada counter/penghitung pengunjung
