@@ -15,8 +15,6 @@ if(isset($_POST['who']) && isset($_POST['pass'])){
 
     $hashing = hashPass();
   
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email=:user AND password=:pass");
-    $stmt->execute(array(':user'=> $_POST['who'], ':pass'=>$hashing ));
     $row = getUser($pdo, $hashing);
 
     $check = validateUser2($row);
