@@ -29,11 +29,21 @@ function storeVisitor($pdo){
 }
 
 function countVisitor($pdo){
-    
     $stmt = $pdo->query("SELECT COUNT(*) AS numvisit FROM ( SELECT * FROM visitors WHERE date(dateVisit) = CURDATE() GROUP BY idsession ) visitors");
     // $stmt = $pdo->query("SELECT * FROM visitors WHERE date(dateVisit) = CURDATE() GROUP BY idsession");
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result["numvisit"];
+}
+function countVisitorSunday($pdo){
+    $stmt = $pdo->query("SELECT COUNT(*) AS numvisit FROM ( SELECT * FROM visitors WHERE DAYOFWEEK(dateVisit) = 1 GROUP BY idsession ) visitors");
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result["numvisit"];
+}
+
+function cookieLogin(){
+    $cookie_name = "login";
+    $cookie_value = "failed";
+    setcookie($cookie_name, $cookie_value, time() + (60 * 10), "/");
 }
 
 function flashMessage(){
@@ -144,6 +154,10 @@ function getCommentById($pdo){
     return $row;
 }
 
+function getEducations($pdo){
+    $stmt = $pdo->query("SELECT * FROM pendidikan ORDER BY id_pendidikan");
+    return $stmt;
+}
 function insertUser($pdo,$hashing){
     $stmt = $pdo->prepare('INSERT INTO Users
     (name, email, password)

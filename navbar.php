@@ -6,6 +6,8 @@ include_once "header.php";
 storeVisitor($pdo);
 $visitor = countVisitor($pdo);
 
+$sundayVisitor = countVisitorSunday($pdo);
+
 if(isset($_SESSION['name'])){
 
  ?>
@@ -26,6 +28,7 @@ if(isset($_SESSION['name'])){
         <ul class="navbar-nav mt-2 mt-md-0">
   			<li class="nav-item dropdown" style="align-self: center;">
           <i class="fa fa-users text-white" aria-hidden="true"></i>
+          <span style="color:white;">Sunday Visitors <?=$sundayVisitor?></span>
           <span style="color:white;">Today Visitors <?=$visitor?> </span>
 		    </li>
 
@@ -34,6 +37,12 @@ if(isset($_SESSION['name'])){
 		          Hi, <?=htmlentities($_SESSION['name'])?>
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <?php 
+            if($_SESSION['name'] == 'admin'){
+              echo '<a class="dropdown-item" href="./riwayatPendidikan.php">Education</a>';
+		          
+            }
+            ?>
 		          <a class="dropdown-item" href="./myPost.php">My Posts</a>
 		          <a class="dropdown-item" href="./addPost.php">Create Post</a>
 		          <a class="dropdown-item" href="./logout.php">Log Out</a>
@@ -64,6 +73,7 @@ if(isset($_SESSION['name'])){
         <div class=" mt-2 mt-md-0">
         <span class="align-baseline">
         <i class="fa fa-users text-white" aria-hidden="true"></i>
+        <span style="color:white;">Sunday Visitors <?=$sundayVisitor?></span>
         <span style="color:white;">Today Visitors <?=$visitor?></span>
         </span>
 

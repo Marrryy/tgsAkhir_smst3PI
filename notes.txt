@@ -54,3 +54,19 @@ CREATE TABLE visitors (
   page VARCHAR(20),
   PRIMARY KEY(visitor_id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE pendidikan (
+  id_pendidikan INTEGER NOT NULL AUTO_INCREMENT,
+  tahun_masuk int(4),
+  tahun_lulus int(4),
+  tingkat_pendidikan VARCHAR(20),
+  nama_pendidikan VARCHAR(50),
+  PRIMARY KEY(id_pendidikan)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+
+
+Insert into pendidikan value (1, 2005, 2006, 'TK', 'TK Budi Setya');
+Insert into pendidikan value (2, 2006, 2012, 'SD', 'SD Harapan Bunda');
+Insert into pendidikan value (3, 2012, 2015, 'SMP', 'SMPN 193 Jakarta Timur');
+Insert into pendidikan value (4, 2015, 2018, 'SMK', 'SMKN 48 Jakarta');
+Insert into pendidikan value (5, 2018, 2021, 'Strata-1', 'Universitas Darma Persada')

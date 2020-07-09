@@ -5,6 +5,12 @@ include_once "function.php";
 session_start();
 
 if(isset($_POST['username']) && isset($_POST['who']) && isset($_POST['pass'])){ 
+  if($_POST['username'] == 'admin'){
+    $_SESSION['error'] = "Username can't be Admin";
+    header("Location: register.php");
+    return;
+  }
+
   $check = validateUser();
   if($check){
     $_SESSION['error'] = $check;
